@@ -49,22 +49,6 @@ gcp_ssh_key_manager_download() {
   curl -sSL "https://raw.githubusercontent.com/wys1203/my-gcloud-workspace/master/scripts/gcp_ssh_key_manager.sh" | bash -s download
 }
 
-update_know_hosts_for_github() {
-  local host="github.com"
-  if ! ssh-keygen -F "$host" > /dev/null; then
-    echo "$host not found in known_hosts. Adding it now..."
-    ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-    if [ $? -eq 0]; then 
-      echo "$host has been added to known_hosts."
-    else 
-      echo "Failed to add $host to known_hosts. Please check your network connection or ssh-keyscan command."
-    fi
-  else
-    echo "$host is already in known_hosts."
-  fi
-}
-
 # Clone the GitHub repository
 clone_github_repo() {
   echo "Cloning GitHub repository..."
@@ -79,5 +63,4 @@ clone_github_repo() {
 install_gcloud
 gcloud_auth_login
 gcp_ssh_key_manager_download
-update_know_hosts_for_github
 clone_github_repo
