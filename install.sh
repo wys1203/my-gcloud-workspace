@@ -30,13 +30,23 @@ install_gcloud() {
 # Process gcloud auth login
 gcloud_auth_login() {
   echo "Starting gcloud auth login..."
-  gcloud auth login
+  local current_account
+  current_account=$(gcloud config list account --format json | jq -r '.core.account')
+  local expected_value="wys1203@gmail.com"
+  if [ "$current_account" != "$expected_value" ]; then
+      echo "Running gcloud auth login..."
+      gcloud auth login
+      gcloud config set project wys1203
+  else
+      echo "  - Account: $expected_value"
+  fi
 }
 
-# Download gcp_ssh_key_manager.sh
-download_gcp_ssh_key_manager() {
-  echo "Downloading gcp_ssh_key_manager.sh..."
-  curl -O https://raw.githubusercontent.com/wys1203/my-gcloud-workspace/master/scripts/gcp_ssh_key_manager.sh
+# Download key by gcp_ssh_key_manager.sh
+gcp_ssh_key_manager_download() {
+  mkdir -p ~/.ssh
+  echo "gcp_ssh_key_manager.sh Downloading..."
+  curl -sSL "https://raw.githubusercontent.com/wys1203/my-gcloud-workspace/master/scripts/gcp_ssh_key_manager.sh" | bash
 }
 
 # Clone the GitHub repository
@@ -46,6 +56,7 @@ clone_github_repo() {
   mkdir -p $HOME/Personal_Data/src/github.com/wys1203
   git clone git@github.com:wys1203/init-dev-workspace $HOME/Personal_Data/src/github.com/wys1203/init-dev-workspace
 }
+
 
 # Instructions to execute this script from a GitHub URL:
 # curl -sSL https://raw.githubusercontent.com/wys1203/my-gcloud-workspace/master/install.sh | bash
