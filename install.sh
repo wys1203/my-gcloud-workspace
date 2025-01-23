@@ -36,7 +36,7 @@ gcloud_auth_login() {
 # Download gcp_ssh_key_manager.sh
 download_gcp_ssh_key_manager() {
   echo "Downloading gcp_ssh_key_manager.sh..."
-  curl -O https://raw.githubusercontent.com/wys1203/my-gcloud-workspace/main/scripts/gcp_ssh_key_manager.sh
+  curl -O https://raw.githubusercontent.com/wys1203/my-gcloud-workspace/master/scripts/gcp_ssh_key_manager.sh
 }
 
 # Clone the GitHub repository
@@ -48,7 +48,7 @@ clone_github_repo() {
 }
 
 # Instructions to execute this script from a GitHub URL:
-# curl -sSL https://raw.githubusercontent.com/wys1203/my-gcloud-workspace/main/install.sh | bash
+# curl -sSL https://raw.githubusercontent.com/wys1203/my-gcloud-workspace/master/install.sh | bash
 
 install_gcloud
 gcloud_auth_login
