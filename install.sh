@@ -31,7 +31,7 @@ install_gcloud() {
 gcloud_auth_login() {
   echo "Starting gcloud auth login..."
   local current_account
-  current_account=$(gcloud config list account --format json | jq -r '.core.account')
+  current_account=$(gcloud config list account --format text | awk -F "core.account: " '{print $2}')
   local expected_value="wys1203@gmail.com"
   if [ "$current_account" != "$expected_value" ]; then
       echo "Running gcloud auth login..."
@@ -63,5 +63,5 @@ clone_github_repo() {
 
 install_gcloud
 gcloud_auth_login
-download_gcp_ssh_key_manager
+gcp_ssh_key_manager_download
 clone_github_repo
