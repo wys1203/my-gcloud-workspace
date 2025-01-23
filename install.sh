@@ -43,8 +43,8 @@ download_gcp_ssh_key_manager() {
 clone_github_repo() {
   ssh-keyscan github.com >> ~/.ssh/known_hosts
   echo "Cloning GitHub repository..."
-  mkdir -p $HOME/go/src/github.com/wys1203
-  git clone git@github.com:wys1203/init-dev-workspace $HOME/go/src/github.com/wys1203/init-dev-workspace
+  mkdir -p $HOME/Personal_Data/src/github.com/wys1203
+  git clone git@github.com:wys1203/init-dev-workspace $HOME/Personal_Data/src/github.com/wys1203/init-dev-workspace
 }
 
 # Instructions to execute this script from a GitHub URL:
