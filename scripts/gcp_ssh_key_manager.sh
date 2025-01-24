@@ -33,12 +33,6 @@ update_know_hosts_for_github() {
   if ! ssh-keygen -F "$host" > /dev/null; then
     echo "$host not found in known_hosts. Adding it now..."
     ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-    if [ $? -eq 0]; then 
-      echo "$host has been added to known_hosts."
-    else 
-      echo "Failed to add $host to known_hosts. Please check your network connection or ssh-keyscan command."
-    fi
   else
     echo "$host is already in known_hosts."
   fi
